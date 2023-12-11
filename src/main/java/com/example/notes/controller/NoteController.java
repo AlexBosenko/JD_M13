@@ -1,10 +1,12 @@
 package com.example.notes.controller;
 
+import com.example.notes.entity.Note;
 import com.example.notes.service.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @RequiredArgsConstructor
@@ -12,15 +14,28 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/note")
 public class NoteController {
     private final NoteService noteService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     public ModelAndView getNotes() {
         ModelAndView result = new ModelAndView("list");
         result.addObject("notes", noteService.listAll());
         return result;
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public ModelAndView createNote() {
         ModelAndView result = new ModelAndView("create-note");
         return result;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/note/create")
+    public ModelAndView createNote(
+            @RequestParam(value = "noteTitle") String noteTitle,
+            @RequestParam(value = "noteContent") String noteContent) {
+        Note newNote = new Note();
+        newNote.setTitle(noteTitle);
+        newNote.setContent(noteContent);
+        noteService.add(newNote);
+        return getNotes();
     }
 }

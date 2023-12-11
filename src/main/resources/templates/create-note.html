@@ -8,18 +8,26 @@
 </head>
 <body>
     <div class="container mt-3">
-        <div class="card">
-            <div class="card-header">Create new note</div>
-            <div class="card-body">
-                <label for="noteTitle" class="form-label">Enter title</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="noteTitle" name="noteTitle">
+        <form action="/note/create" method="post">
+            <div class="card">
+                <div class="card-header">Create new note</div>
+                <div class="card-body">
+<!--                    <label for="noteTitle" class="form-label">Enter title</label>-->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Enter title</span>
+                        <input type="text" class="form-control" id="noteTitle" name="noteTitle" aria-label="Enter title">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Enter content</span>
+                        <textarea class="form-control" id="noteContent" aria-label="Enter content"></textarea>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Press me</button>
-            </div>
-        </div>
+        </form>
+
     </div>
 </body>
 </html>
