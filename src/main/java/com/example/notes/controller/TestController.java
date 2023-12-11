@@ -10,7 +10,7 @@ public class TestController {
     @RequestMapping(method = RequestMethod.GET, value = "/test")
     public ModelAndView getTest() {
         ModelAndView result = new ModelAndView("test");
-        result.addObject("test", "test. olololo!");
+        result.addObject("text", "Hello, World");
         return result;
     }
 }
