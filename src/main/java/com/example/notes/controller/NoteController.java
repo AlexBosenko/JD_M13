@@ -23,25 +23,19 @@ public class NoteController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public ModelAndView getCreateNote() {
-        ModelAndView result = new ModelAndView("create-note");
-        return result;
+        return new ModelAndView("create-note");
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/create")
-    public ModelAndView postCreateNote(
-            @RequestParam(value = "noteTitle") String noteTitle,
-            @RequestParam(value = "noteContent") String noteContent) {
-        Note newNote = new Note();
-        newNote.setTitle(noteTitle);
-        newNote.setContent(noteContent);
+    public String postCreateNote(@ModelAttribute("addedNote") Note newNote) {
         noteService.add(newNote);
-        return getNotes();
+        return "redirect:/note/list";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/delete")
-    public ModelAndView deleteNote(@RequestParam(value = "id") String id) throws NoteNotFoundException {
+    @RequestMapping(method = RequestMethod.POST, value = "/delete")
+    public String deleteNote(@RequestParam(value = "id") String id) throws NoteNotFoundException {
         noteService.deleteById(Long.parseLong(id));
-        return getNotes();
+        return "redirect:/note/list";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit")
@@ -52,15 +46,8 @@ public class NoteController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/edit")
-    public ModelAndView postEditNote(
-            @RequestParam(value = "noteId") String id,
-            @RequestParam(value = "noteTitle") String title,
-            @RequestParam(value = "noteContent") String content) throws NoteNotFoundException {
-        Note newNote = new Note();
-        newNote.setId(Long.parseLong(id));
-        newNote.setTitle(title);
-        newNote.setContent(content);
-        noteService.update(newNote);
-        return getNotes();
+    public String postEditNote(@ModelAttribute("editedNote") Note note) throws NoteNotFoundException {
+        noteService.update(note);
+        return "redirect:/note/list";
     }
 }

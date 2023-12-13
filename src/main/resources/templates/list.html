@@ -16,18 +16,23 @@
             <div class="card-body">
                 <table class="table">
                     <tr>
-                        <th hidden>Id</th>
                         <th>Title</th>
                         <th>Content</th>
                         <th>Actions</th>
                     </tr>
                     <tr th:each="note: ${notes}">
-                        <td hidden th:text="${note.id}"></tddisplay:none>
                         <td th:text="${note.title}"></td>
                         <td th:text="${note.content}"></td>
                         <td>
-                            <a th:href="'/note/edit?id=' + ${note.id}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                            <a th:href="'/note/delete?id=' + ${note.id}" class="btn btn-sm btn-outline-danger">Delete</a>
+                            <form action="/note/delete" method="POST">
+                                <div>
+                                    <input hidden type="text" id="id" name="id" th:value="${note.id}">
+                                </div>
+                                <div>
+                                    <a th:href="'/note/edit?id=' + ${note.id}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </div>
+                            </form>
                         </td>
                     </tr>
                 </table>

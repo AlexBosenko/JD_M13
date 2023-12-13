@@ -48,38 +48,10 @@ public class NoteService {
         Note note2 = new Note();
         note2.setTitle("title2");
         note2.setContent("content2");
-        note2 = add(note2);
 
         Note note3 = new Note();
         note3.setTitle("title3");
         note3.setContent("content3");
         add(note3);
-//
-//        //list of all notes
-//        log.info("list of all notes");
-//        listAll();
-//
-//        //delete note by id
-//        try {
-//            deleteById(note2.getId());
-//        } catch (NoteNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Note note5 = new Note();
-//        note5.setTitle("title5");
-//        note5.setContent("content5");
-//        add(note5);
-//
-//        log.info("list of all notes");
-//        listAll();
-//
-//        long id = 3L;
-//        try {
-//            Note noteById = getById(id);
-//            log.info("get note by id = " + noteById.toString());
-//        } catch (NoteNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 }

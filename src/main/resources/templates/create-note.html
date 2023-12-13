@@ -8,17 +8,17 @@
 </head>
 <body>
     <div class="container mt-3">
-        <form action="/note/create" method="POST">
+        <form action="/note/create" method="POST" modelAttribute="addedNote">
             <div class="card">
                 <div class="card-header">Create new note</div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Enter title</span>
-                        <input type="text" class="form-control" id="noteTitle" name="noteTitle">
+                        <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Enter content</span>
-                        <textarea class="form-control" id="noteContent" name="noteContent" cols="30" rows="10"></textarea>
+                        <textarea class="form-control" id="content" name="content" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="card-footer">
